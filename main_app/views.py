@@ -1,11 +1,6 @@
 from django.shortcuts import render
-
 from .models import Finch 
-
-# finches = [
-#   {'name': 'Lolo', 'breed': 'tabby', 'description': 'furry little demon', 'age': 3},
-#   {'name': 'Sachi', 'breed': 'calico', 'description': 'gentle and loving', 'age': 2},
-# ]
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
 # views page functions below
 def home(request):
@@ -28,4 +23,19 @@ def finches_detail(request, finch_id):
     {
         'finch': finch
     })
+
+#Finch Create View
+class FinchCreate(CreateView):
+    model = Finch
+    fields = '__all__'
+
+#Finch Update View
+class FinchUpdate(UpdateView):
+    model = Finch
+    fields = ['breed', 'description', 'age']
+
+#Finch Delete View
+class FinchDelete(DeleteView):
+    model = Finch
+    success_url = '/finches'
 

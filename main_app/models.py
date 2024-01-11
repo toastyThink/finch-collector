@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 class Finch(models.Model):
@@ -9,4 +10,13 @@ class Finch(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def get_absolute_url(self):
+        return reverse('detail', kwargs={'finch_id': self.id})
 
+    #get_absolute_url sets a url -> currently targeting self
+    #reverse is like url template tag, can 
+    #pass in name field to specificy url
+
+    #kwargs is not required but is needed for the detail page 
+    #because it contains the id for each details page
